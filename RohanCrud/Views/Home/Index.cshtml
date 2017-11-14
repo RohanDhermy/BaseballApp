@@ -1,0 +1,41 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row" ng-controller="playerController as pc">
+    <div class="col-md-12 table-responsive">
+        <table class="table table-striped table-responsive table-hover">
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Team Name</th>
+                    <th>Batting Average</th>
+                    <th>OPS</th>
+                    <th><button class="btn btn-success" ng-click="pc.add()"><i class="glyphicon glyphicon-plus"></i></button></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="player in pc.players">
+                    <td>{{player.FirstName}}</td>
+                    <td>{{player.LastName}}</td>
+                    <td>{{player.Name}}</td>
+                    <td>{{player.BattingAverage}}</td>
+                    <td>{{player.OPS}}</td>
+                    <td><button class="btn btn-warning" ng-click="pc.add(player)"><i class="glyphicon glyphicon-pencil"></i></button></td>
+                    <td><button class="btn btn-danger" ng-click="pc.delete(player)"><i class="glyphicon glyphicon-remove"></i></button></td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+@section scripts{    
+<script src="~/Scripts/app/Controllers/PlayerModalController.js"></script>
+<script src="~/Scripts/app/Controllers/PlayerController.js"></script>
+<script src="~/Scripts/app/Scripts/PlayerService.js"></script>
+<script src="~/Scripts/angular-ui-router.js"></script>
+<script src="~/Scripts/angular-ui/ui-bootstrap-tpls.min.js"></script>
+}
