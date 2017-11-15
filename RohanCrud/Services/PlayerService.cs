@@ -52,10 +52,10 @@ namespace RohanCrud.Services
                         SqlDbParameter.Instance.BuildParameter("@Id", id, System.Data.SqlDbType.Int, paramDirection: System.Data.ParameterDirection.Output)
                     }
                 };
-                Adapter.ExecuteQuery(cmdDef, (collection =>
+                Adapter.ExecuteQuery(cmdDef, (collection) =>
                 {
-                    int.TryParse(collection["@Id"].ToString(), out id);
-                }));
+                    id = collection.GetParamValue<int>("@Id");
+                });
                 return id;
 
         }

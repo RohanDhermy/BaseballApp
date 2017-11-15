@@ -107,7 +107,7 @@ namespace RohanCrud.Adapter
             }
         }
 
-        public int ExecuteQuery(IDbCmdDef cmdDef, Action<IDataParameterCollection> returnParameters = null)
+        public int ExecuteQuery(IDbCmdDef cmdDef, Action<IDbDataParameter[]> returnParameters = null)
         {
             try
             {
@@ -128,7 +128,7 @@ namespace RohanCrud.Adapter
                     }
 
                     int returnVal = cmd.ExecuteNonQuery();
-                    returnParameters?.Invoke(cmd.Parameters);
+                    returnParameters?.Invoke(cmdDef.DbParameters);
                     return returnVal;
                 }
             }
