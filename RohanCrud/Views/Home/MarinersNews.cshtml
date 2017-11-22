@@ -3,8 +3,17 @@
     ViewBag.Title = "MarinersNews";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div ng-controller="playerController as pc">
-    <h2>Mariners News</h2>
+<div ng-cloak ng-controller="playerController as pc">
+    <div class="row">
+        <div align="left">
+            <h2><span ng-show="pc.selectedTeam.Name">{{pc.selectedTeam.Name}}</span><span ng-show="!pc.selectedTeam.Name">All</span> News</h2>
+        </div>
+        <div align="right">
+            <label for="team">Team: </label>
+            <select ng-change="pc.getNews()" ng-options="itm.City+ ' ' + itm.Name for itm in pc.teams" ng-model="pc.selectedTeam"></select>
+        </div>
+    </div>
+    
     <div ng-repeat="itm in pc.news track by $index">
         <p ng-bind-html="itm"></p>
         <hr />

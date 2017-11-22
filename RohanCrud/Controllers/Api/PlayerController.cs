@@ -116,10 +116,16 @@ namespace RohanCrud.Controllers.Api
         }
 
         [Route("News"), HttpPost]
-        public HttpResponseMessage GetMarinersNews()
+        public HttpResponseMessage GetMarinersNews(Team selectedTeam)
         {
+            string teamName = ""; 
+            if(selectedTeam != null)
+            {
+                teamName = selectedTeam.City + " " + selectedTeam.Name;
+                teamName = teamName.Replace(" ", "-");
+            }
             var html = new HtmlDocument();
-            html.LoadHtml(new WebClient().DownloadString("https://www.mlbtraderumors.com/seattle-mariners"));
+            html.LoadHtml(new WebClient().DownloadString("https://www.mlbtraderumors.com/"+ teamName));
             var root = html.DocumentNode;
 
             IEnumerable<HtmlAgilityPack.HtmlNode> myList = new List<HtmlAgilityPack.HtmlNode>(); 

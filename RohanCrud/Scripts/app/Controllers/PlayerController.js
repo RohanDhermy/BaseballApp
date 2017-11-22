@@ -14,6 +14,8 @@
         vm.add = _add; 
         vm.delete = _delete; 
         vm.news = []; 
+        vm.selectedTeam; 
+        vm.getNews = _getNews; 
 
         function _init() {
             _loadTeams(); 
@@ -22,7 +24,8 @@
         }
 
         function _getNews() {
-            playerService.GetNews()
+            console.log("get news called");
+            playerService.GetNews(vm.selectedTeam)
                 .then(function (data) {
                     console.log(data);
                     for (var i = 0; i < data.length; i++){

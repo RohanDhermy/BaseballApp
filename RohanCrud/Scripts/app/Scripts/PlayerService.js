@@ -77,8 +77,8 @@
                 })
         }
 
-        function _getNews() {
-            return $http.post("/api/Player/News")
+        function _getNews(selectedTeam) {
+            return $http.post("/api/Player/News/", selectedTeam)
                 .then(function (response) {
                     return response.data;
                 })
